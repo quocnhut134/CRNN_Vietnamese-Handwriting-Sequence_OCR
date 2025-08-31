@@ -9,8 +9,6 @@ This project implements a ``Convolutional Recurrent Neural Network (CRNN)`` comb
 - Installation
 - Usage
     - Training
-- Results
-- Training Metrics
 
 ## Model Architecture
 The ``CRNN`` is a standard architecture for Vietnamese Handwritten text sequence (text line) recognition tasks in images. It consists of three main components:
