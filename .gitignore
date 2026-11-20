@@ -1,0 +1,5 @@
+# Local dataset and training artifacts
+/data/VietOCR/
+/trained_model/
+/training_metrics.png
+.ipynb_checkpoints/

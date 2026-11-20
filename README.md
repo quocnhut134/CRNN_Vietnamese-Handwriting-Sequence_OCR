@@ -6,6 +6,8 @@ This document explains the process used in the ``Testing.ipynb`` notebook to imp
 
 - The Core Challenge & Solution
 
+- Dataset access
+
 - Setup & Installation
 
 - How to Use
@@ -19,6 +21,10 @@ The key innovation in this notebook is a heuristic-based method for estimating t
 ## The Core Challenge & Solution
 - The Challenge: The ``CRNN model`` was trained on images that were resized to a dynamic width proportional to the length of their corresponding text label (i.e., ``image_width = character_count * character_width``). During inference on a new image, the ground-truth text and its length are unknown. Passing an improperly sized image to the model would lead to poor performance.
 - The Solution: To overcome this, a character estimation function, ``estimate_character_count_with_spaces``, has been implemented. This function analyzes the input image using image processing techniques to approximate the number of characters (including spaces). This estimated count is then used to resize the image to an appropriate width that the ``CRNN model`` expects, significantly improving prediction accuracy.
+
+## Dataset access
+
+The project used line images derived from HANDS-VNOnDB. Request access through the [official Zenodo record](https://zenodo.org/records/23864366) and follow the dataset usage agreement. The data and its derivatives are restricted to non-commercial research and may not be redistributed. For inference, supply your own authorized image and checkpoint or use the self-written example images included in this branch.
 
 ## Setup & Installation
 - **Clone the repository:**
