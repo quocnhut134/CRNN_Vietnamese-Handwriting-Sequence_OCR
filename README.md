@@ -1,10 +1,11 @@
 # Vietnamese Handwritten Line Text Recognition using CRNN
-This project implements a ``Convolutional Recurrent Neural Network (CRNN)`` combined with ``Connectionist Temporal Classification (CTC) Loss`` to recognize lines of Vietnamese handwritten text from images. The model is built using ``PyTorch`` and trained on a custom ``Vietnamese handwriting dataset``.
+This project implements a ``Convolutional Recurrent Neural Network (CRNN)`` combined with ``Connectionist Temporal Classification (CTC) Loss`` to recognize lines of Vietnamese handwritten text from images. The model is built using ``PyTorch`` and trained on Vietnamese handwriting line images derived from HANDS-VNOnDB.
 
 ## Table of Contents
 - Model Architecture
 - Dataset
     - Description
+    - Preparing training data locally
     - Image Preprocessing
 - Installation
 - Usage
@@ -47,6 +48,24 @@ The line images used for training were derived from HANDS-VNOnDB, maintained by 
 
 - **Vocabulary:** The character set is comprehensive, including all Vietnamese alphabet characters (uppercase, lowercase, and with diacritics), digits, and common punctuation marks.
 
+### Preparing training data locally
+
+After access is approved, render the line-level InkML strokes to images and use the matching ground-truth transcriptions to create UTF-8 annotation files. Preserve the dataset's train and test split. For each image, write one row with its filename (including the extension), a tab, and the transcription. Omit the header.
+
+By default, `Training_CRNN.ipynb` reads this layout from the repository folder.
+
+```text
+data/VietOCR/
+├── InkData_line_processed/
+│   └── <line images>
+├── train_line_annotation.txt
+└── test_line_annotation.txt
+```
+
+To store the dataset outside the checkout, set `OCR_DATA_DIR` to the folder containing both annotation files and `InkData_line_processed` before starting Jupyter.
+
+Keep dataset files, rendered examples, transcriptions, checkpoints trained on the dataset, and outputs containing examples local. Clear outputs from notebooks run with this dataset before committing them. Cite the [HANDS-VNOnDB paper](https://doi.org/10.1016/j.patcog.2018.01.013) when reporting research with the dataset.
+
 ### Image Preprocessing
 Each input image undergoes a series of preprocessing steps to normalize and enhance its quality before being fed into the model:
 
@@ -74,11 +93,9 @@ Each input image undergoes a series of preprocessing steps to normalize and enha
     source venv/bin/activate  # On Windows: venv\Scripts\activate
     ```
 
-***Note:** You may need to adjust the data paths in the Jupyter Notebook if your structure differs.*
-
 ## Usage
 ### Training
-- Open and run the cells in the Jupyter notebook file.
+- Prepare your local dataset as described above, then open and run `Training_CRNN.ipynb`.
 
 - The training script utilizes key techniques such as:
 
